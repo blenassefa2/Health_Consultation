@@ -7,9 +7,10 @@ export interface IDoctorInterface {
   consultedPatientsOnline: number
   consultedPatients: number
   rating: number
-  // photoURL: String
+  photoURL: String
   customerRates: [Number]
   availability: [Date]
+  licence: String
 }
 export const DoctorSchema: mongoose.Schema<IDoctorInterface> =
   new mongoose.Schema({
@@ -34,12 +35,12 @@ export const DoctorSchema: mongoose.Schema<IDoctorInterface> =
     rating: {
       type: Number
     },
-    // photoURL: {
-    //   type: String,
-    //   default:
-    //     'https://res.cloudinary.com/digitallibrary/image/upload/v1662630438/defaults/pro_fox170.jpg',
-    //   Required: false
-    // },
+    photoURL: {
+      type: String,
+      default:
+        'https://res.cloudinary.com/feruz/image/upload/v1672315494/image/download_xwg9qz.png',
+      Required: false
+    },
     customerRates: [
       {
         type: Number
@@ -49,6 +50,10 @@ export const DoctorSchema: mongoose.Schema<IDoctorInterface> =
       {
         type: Date
       }
-    ]
+    ],
+    licence: {
+      type: String,
+      required: true
+    }
   })
-export const Book = mongoose.model<IDoctorInterface>('Doctor', DoctorSchema)
+export const Doctor = mongoose.model<IDoctorInterface>('Doctor', DoctorSchema)
