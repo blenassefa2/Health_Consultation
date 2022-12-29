@@ -7,7 +7,8 @@ export interface IDoctorInterface {
   consultedPatientsOnline: number
   consultedPatients: number
   rating: number
-  customerRates: [mongoose.Types.ObjectId]
+  // photoURL: String
+  customerRates: [Number]
   availability: [Date]
 }
 export const DoctorSchema: mongoose.Schema<IDoctorInterface> =
@@ -15,6 +16,39 @@ export const DoctorSchema: mongoose.Schema<IDoctorInterface> =
     name: {
       type: String,
       required: true
-    }
+    },
+    description: {
+      type: String,
+      required: false
+    },
+    speciality: {
+      type: String,
+      required: true
+    },
+    consultedPatientsOnline: {
+      type: Number
+    },
+    consultedPatients: {
+      type: Number
+    },
+    rating: {
+      type: Number
+    },
+    // photoURL: {
+    //   type: String,
+    //   default:
+    //     'https://res.cloudinary.com/digitallibrary/image/upload/v1662630438/defaults/pro_fox170.jpg',
+    //   Required: false
+    // },
+    customerRates: [
+      {
+        type: Number
+      }
+    ],
+    availability: [
+      {
+        type: Date
+      }
+    ]
   })
-export const Book = mongoose.model<IDoctorInterface>('Dotor', DoctorSchema)
+export const Book = mongoose.model<IDoctorInterface>('Doctor', DoctorSchema)
