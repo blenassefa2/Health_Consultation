@@ -1,5 +1,5 @@
-import { request, response } from 'express'
+import { Request, Response } from 'express'
 
-export const bookAppointment = async (req: request, res: response) => {
+export const bookAppointment = async (req: Request, res: Response) => {
   return
 }
