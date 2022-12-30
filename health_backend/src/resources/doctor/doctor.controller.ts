@@ -1,8 +1,9 @@
-import { request, response } from 'express'
+import { Request, Response } from 'express'
 import mongoose from 'mongoose'
 import { Doctor } from './doctor.model'
-import cloudinary from './../../utils/cloudinary'
-export const updateUser = async (req: request, res: response) => {
+import cloudinary from './../../config/cloudinary'
+
+export const updateUser = async (req: Request, res: Response) => {
   if (!req.body) {
     const result = {
       statusCode: 404,
@@ -55,13 +56,13 @@ export const updateUser = async (req: request, res: response) => {
   }
 }
 
-export const getAllDoctors = async (req: request, res: response) => {
-  return
+export const getAllDoctors = async (req: Request, res: Response) => {
+  return res.status(200).json({ success: 'true' })
 }
 
-export const getDoctorById = async (req: request, res: response) => {
+export const getDoctorById = async (req: Request, res: Response) => {
   return
 }
-export const getDoctorByTag = async (req: request, res: response) => {
+export const getDoctorByTag = async (req: Request, res: Response) => {
   return
 }
