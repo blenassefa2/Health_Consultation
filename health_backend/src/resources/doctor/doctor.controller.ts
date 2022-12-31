@@ -57,12 +57,19 @@ export const updateUser = async (req: Request, res: Response) => {
 }
 
 export const getAllDoctors = async (req: Request, res: Response) => {
-  return res.status(200).json({ success: 'true' })
+  const doctor = await Doctor.find({})
+  return doctor
 }
 
 export const getDoctorById = async (req: Request, res: Response) => {
-  return
+  const _id = req.params.id
+  const doctor = await Doctor.findById(_id)
+  return doctor
 }
 export const getDoctorByTag = async (req: Request, res: Response) => {
-  return
+  const tag = req.params.tag
+  const doctor = await Doctor.find({
+    speciality: tag
+  })
+  return doctor
 }
