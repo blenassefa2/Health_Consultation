@@ -15,7 +15,7 @@ export const stylesheet = StyleSheet.create({
     width: 59,
     height: 48,
     borderRadius: 16,
-    backgroundColor: "#0F0",
+    backgroundColor: "#0Ff",
   },
   styleDoctor: {
     position: "absolute",
@@ -37,7 +37,7 @@ export const stylesheet = StyleSheet.create({
     width: 239,
     height: 52,
     borderRadius: 50,
-    backgroundColor: "#0F0",
+    backgroundColor: "#f0f",
   },
   styleSearchDoctor: {
     position: "absolute",
@@ -59,7 +59,7 @@ export const stylesheet = StyleSheet.create({
     width: 54,
     height: 44,
     borderRadius: 16,
-    backgroundColor: "#0f0",
+    backgroundColor: "#f0f",
   },
   styleAll: {
     position: "absolute",
@@ -70,7 +70,7 @@ export const stylesheet = StyleSheet.create({
     fontSize: 19,
     letterSpacing: 0,
     fontStyle: "normal",
-    backgroundColor: "#0F0",
+    backgroundColor: "#0Fa",
   },
   styleRectangle37: {
     position: "absolute",
@@ -121,7 +121,7 @@ export const stylesheet = StyleSheet.create({
     width: 131,
     height: 44,
     borderRadius: 16,
-    backgroundColor: "#0f0",
+    backgroundColor: "#0ff",
   },
   styleRectangle41: {
     position: "absolute",
@@ -133,7 +133,7 @@ export const stylesheet = StyleSheet.create({
     height: 418,
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
-    backgroundColor: "#0F0",
+    backgroundColor: "#fff",
   },
   styleDrPeterSamuel: {
     position: "absolute",

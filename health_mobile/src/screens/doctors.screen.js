@@ -14,6 +14,7 @@ export default function Doctors() {
       <Text style={stylesheet.styleRectangle10}></Text>
       <View style={stylesheet.styleRectangle36}></View>
       <Text style={stylesheet.styleAll}>All</Text>
+      <View style={stylesheet.styleRectangle41}></View>
       <View style={stylesheet.styleRectangle37}></View>
       <Image
         style={stylesheet.styleRectangle42}
@@ -22,7 +23,7 @@ export default function Doctors() {
       <Text style={stylesheet.styleCardiologist}>Cardiologist</Text>
       <View style={stylesheet.styleRectangle40}></View>
       <Text style={stylesheet.stylePaediatrician}>Pediatrician</Text>
-      <View style={stylesheet.styleRectangle41}></View>
+
       <Text style={stylesheet.styleDrPeterSamuel}>Dr. Peter Samuel</Text>
       <Text style={stylesheet.styleCardiologist2}>Cardiologist</Text>
       <Text style={stylesheet.stylefivestar}>5 star</Text>
