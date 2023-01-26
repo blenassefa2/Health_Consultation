@@ -8,14 +8,23 @@ export const stylesheet = StyleSheet.create({
     height: 800,
     backgroundColor: "#F4F1F1",
   },
-  styleRectangle10: {
+  styleInput: {
+    position: "absolute",
+    left: 40,
+    top: 120,
+    width: 239,
+    height: 52,
+    borderRadius: 50,
+    backgroundColor: "rgba(242, 78, 30, 1)",
+  },
+ 
+  styleIcon: {
     position: "absolute",
     right: 6,
     top: 124,
-    width: 59,
-    height: 48,
+    width: 50,
+    height: 40,
     borderRadius: 16,
-    backgroundColor: "#0F0",
   },
   styleDoctor: {
     position: "absolute",
@@ -30,28 +39,16 @@ export const stylesheet = StyleSheet.create({
     textAlign: "left",
     letterSpacing: 0,
   },
-  styleRectangle9: {
-    position: "absolute",
-    left: 40,
-    top: 120,
-    width: 239,
-    height: 52,
-    borderRadius: 50,
-    backgroundColor: "#0F0",
-  },
-  styleSearchDoctor: {
-    position: "absolute",
-    left: 40,
-    top: 234,
-    width: 253,
-    color: "rgba(0, 0, 0, 1)",
-    fontSize: 24,
-    fontWeight: "bold",
-
-    letterSpacing: 0,
-    fontStyle: "normal",
-    textAlign: "left",
-  },
+  // styleRectangle9: {
+  //   position: "absolute",
+  //   left: 40,
+  //   top: 120,
+  //   width: 239,
+  //   height: 52,
+  //   borderRadius: 50,
+  //   backgroundColor: "rgba(242, 78, 30, 1)",
+  // },
+  
   styleRectangle36: {
     position: "absolute",
     left: 40,
@@ -59,7 +56,7 @@ export const stylesheet = StyleSheet.create({
     width: 54,
     height: 44,
     borderRadius: 16,
-    backgroundColor: "#0f0",
+    backgroundColor: "rgba(242, 78, 30, 1)",
   },
   styleAll: {
     position: "absolute",
@@ -70,7 +67,7 @@ export const stylesheet = StyleSheet.create({
     fontSize: 19,
     letterSpacing: 0,
     fontStyle: "normal",
-    backgroundColor: "#0F0",
+    backgroundColor: "rgba(242, 78, 30, 1)",
   },
   styleRectangle37: {
     position: "absolute",
@@ -79,7 +76,7 @@ export const stylesheet = StyleSheet.create({
     width: 131,
     height: 44,
     borderRadius: 16,
-    backgroundColor: "#0f0",
+    backgroundColor: "rgba(242, 78, 30, 1)",
   },
   styleCardiologist: {
     position: "absolute",
@@ -121,19 +118,16 @@ export const stylesheet = StyleSheet.create({
     width: 131,
     height: 44,
     borderRadius: 16,
-    backgroundColor: "#0f0",
+    backgroundColor: "rgba(242, 78, 30, 1)",
   },
   styleRectangle41: {
     position: "absolute",
     left: 40,
-
     top: 382,
-
     width: 292,
-    height: 418,
-    borderTopLeftRadius: 16,
-    borderTopRightRadius: 16,
-    backgroundColor: "#0F0",
+    height: 400,
+    borderRadius:16,
+    backgroundColor: "rgba(242, 78, 30, 1)",
   },
   styleDrPeterSamuel: {
     position: "absolute",

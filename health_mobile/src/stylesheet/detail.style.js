@@ -18,7 +18,7 @@ export const stylesheet = StyleSheet.create({
     height: 293,
     borderTopLeftRadius: 21,
     borderTopRightRadius: 21,
-    backgroundColor: "#ADD8E6",
+    backgroundColor: "rgba(242, 78, 30, 1)",
   },
 
   styleRectangle20: {
@@ -272,7 +272,7 @@ export const stylesheet = StyleSheet.create({
     width: 58,
     height: 80,
     borderRadius: 17,
-    backgroundColor: "#ADD8E6",
+    backgroundColor: "rgba(242, 78, 30, 1)",
   },
 
   styleWed: {
@@ -452,7 +452,7 @@ export const stylesheet = StyleSheet.create({
     width: 193,
     height: 42,
     borderRadius: 16,
-    backgroundColor: "#ADD8E6",
+    backgroundColor: "rgba(242, 78, 30, 1)",
   },
   styleBookAppointment: {
     position: "absolute",

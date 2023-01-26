@@ -4,17 +4,13 @@ import { Text, Image, View, Pressable } from "react-native";
 import { stylesheet } from "../stylesheet/home.style";
 export default function Home({ navigation }) {
   const pressHandler = () => {
-    const goToScreen = "Doctors";
+    const goToScreen = "Welcome";
     navigation.navigate(goToScreen);
   };
+  
 
   const pressHandler1 = () => {
     const goToScreen = "Detail";
-    navigation.navigate(goToScreen);
-  };
-
-  const pressHandler3 = () => {
-    const goToScreen = "Convo";
     navigation.navigate(goToScreen);
   };
   
@@ -50,20 +46,21 @@ export default function Home({ navigation }) {
       <View style={stylesheet.styleRectangle6}> </View>
 
       <Pressable style={stylesheet.styleFindDoctor} onPress={pressHandler}>
-        Find Doctor
+        <Text>Find Doctor</Text>
       </Pressable>
+
       <View style={stylesheet.styleMaterialSymbolsNavigateNext}> </View>
       
-      <Pressable style={stylesheet.styleVisitADoctor} onPress={pressHandler3}>
+      <Text style={stylesheet.styleVisitADoctor}>
         Visit a Doctor
-      </Pressable>
+      </Text>
       <View style={stylesheet.styleMaterialSymbolsStethoscope}></View>
       <Image
         source={require("../assets/mobileIcon.png")}
         style={stylesheet.styleMaterialSymbolsMobileFriendlyRounded}
       ></Image>
       <Pressable style={stylesheet.styleBookAppointment} onPress={pressHandler1}>
-        Book Appointment
+      <Text> Book Appointment</Text> 
       </Pressable>
       <View style={stylesheet.styleMaterialSymbolsNavigateNextCopy1}> </View>
       <Image
@@ -74,4 +71,5 @@ export default function Home({ navigation }) {
       ></Image>
     </>
   );
+  
 }
