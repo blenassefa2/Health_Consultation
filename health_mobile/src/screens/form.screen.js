@@ -4,7 +4,11 @@ import { Text, View, TextInput, Button, Pressable } from "react-native";
 import { style } from "../stylesheet/form.style";
 
 // import {icon} from '@iconify/react';
-export default function App() {
+export default function Form({navigation}) {
+  const pressHandler5 = () => {
+    const goToScreen = "Convo";
+    navigation.navigate(goToScreen);
+  };
   const [name, setName] = useState("Feven");
   const [address, setAddress] = useState("30");
   const [consultingdoc, setAconsultingdoc] = useState("Dr. Peter Samuel");
@@ -16,7 +20,7 @@ export default function App() {
         <Text style={style.styleName}> Name</Text>
         <TextInput
           style={style.input}
-          placeholder=" e.g Feven"
+          placeholder=" Your Name"
           onChangeText={(val) => setName(val)}
         />
 
@@ -29,7 +33,7 @@ export default function App() {
         <Text style={style.styleName}>Contact Number</Text>
         <TextInput style={style.input} onChangeText={(val) => setName(val)} />
 
-        {<Button title="BOOK APPOINTMENT" style={style.styleButton}
+        {<Button title="BOOK NOW" style={style.styleButton} onPress={pressHandler5}
         ></Button>}
       </View>
     </>
