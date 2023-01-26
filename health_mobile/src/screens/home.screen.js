@@ -7,6 +7,17 @@ export default function Home({ navigation }) {
     const goToScreen = "Doctors";
     navigation.navigate(goToScreen);
   };
+
+  const pressHandler1 = () => {
+    const goToScreen = "Detail";
+    navigation.navigate(goToScreen);
+  };
+
+  const pressHandler3 = () => {
+    const goToScreen = "Convo";
+    navigation.navigate(goToScreen);
+  };
+  
   return (
     <>
       <View style={stylesheet.styleRectangle1}></View>
@@ -42,13 +53,18 @@ export default function Home({ navigation }) {
         Find Doctor
       </Pressable>
       <View style={stylesheet.styleMaterialSymbolsNavigateNext}> </View>
-      <Text style={stylesheet.styleVisitADoctor}> Visit a Doctor </Text>
+      
+      <Pressable style={stylesheet.styleVisitADoctor} onPress={pressHandler3}>
+        Visit a Doctor
+      </Pressable>
       <View style={stylesheet.styleMaterialSymbolsStethoscope}></View>
       <Image
         source={require("../assets/mobileIcon.png")}
         style={stylesheet.styleMaterialSymbolsMobileFriendlyRounded}
       ></Image>
-      <Text style={stylesheet.styleBookAppointment}> Book Appointment </Text>
+      <Pressable style={stylesheet.styleBookAppointment} onPress={pressHandler1}>
+        Book Appointment
+      </Pressable>
       <View style={stylesheet.styleMaterialSymbolsNavigateNextCopy1}> </View>
       <Image
         style={stylesheet.styleRectangle7}

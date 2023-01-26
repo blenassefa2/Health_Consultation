@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Text, View, TextInput, Button } from "react-native";
+import { Text, View, TextInput, Button, Pressable } from "react-native";
 import { style } from "../stylesheet/form.style";
 
 // import {icon} from '@iconify/react';
@@ -29,7 +29,8 @@ export default function App() {
         <Text style={style.styleName}>Contact Number</Text>
         <TextInput style={style.input} onChangeText={(val) => setName(val)} />
 
-        {<Button title="BOOK APPOINTMENT" style={style.styleButton}></Button>}
+        {<Button title="BOOK APPOINTMENT" style={style.styleButton}
+        ></Button>}
       </View>
     </>
   );
