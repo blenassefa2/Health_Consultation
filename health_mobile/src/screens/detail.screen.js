@@ -1,7 +1,11 @@
 import React from "react";
-import { Text, Image, View } from "react-native";
+import { Text, Image, View,Pressable } from "react-native";
 import { stylesheet } from "../stylesheet/detail.style";
-export default function Detail() {
+export default function Detail( { navigation }) {
+  const pressHandler2 = () => {
+    const goToScreen = "Form";
+    navigation.navigate(goToScreen);
+  };
   return (
     <>
       <View style={stylesheet.styleRectangle22}></View>
@@ -49,7 +53,9 @@ export default function Detail() {
       <View style={stylesheet.styleRectangle30}> </View>
       <Text style={stylesheet.style1100Am}>11:00 am</Text>
       <View style={stylesheet.styleRectangle6}> </View>
-      <Text style={stylesheet.styleBookAppointment}>Book Appointment</Text>
+      <Pressable style={stylesheet.styleBookAppointment} onPress={pressHandler2}>
+        Book Appointment
+      </Pressable>
       <View style={stylesheet.styleMaterialSymbolNavigateNext}></View>
     </>
   );
