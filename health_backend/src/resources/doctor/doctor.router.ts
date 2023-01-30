@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { respond } from '../../middleware/respond'
 import {
   getAllDoctors,
   getDoctorById,
@@ -8,7 +9,7 @@ import {
 const doctorRouter = Router()
 
 doctorRouter.post('/updateUser', updateUser)
-doctorRouter.get('/allDoctors', getAllDoctors)
+doctorRouter.get('/allDoctors', getAllDoctors, respond)
 doctorRouter.get('/getDoctorById/:id', getDoctorById)
 doctorRouter.get('/getDoctorByTag/:tag', getDoctorByTag)
 

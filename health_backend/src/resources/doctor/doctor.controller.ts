@@ -1,7 +1,8 @@
-import { Request, Response } from 'express'
+import { NextFunction, Request, Response } from 'express'
 import mongoose from 'mongoose'
 import { Doctor } from './doctor.model'
 import cloudinary from './../../config/cloudinary'
+import { nextTick } from 'process'
 
 export const updateUser = async (req: Request, res: Response) => {
   if (!req.body) {
@@ -56,9 +57,25 @@ export const updateUser = async (req: Request, res: Response) => {
   }
 }
 
-export const getAllDoctors = async (req: Request, res: Response) => {
-  const doctor = await Doctor.find({})
-  return doctor
+export const getAllDoctors = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const doctors = await Doctor.find({})
+    res.locals.json = {
+      statusCode: 200,
+      data: doctors
+    }
+    return next()
+  } catch (error) {
+    res.locals.json = {
+      statusCode: 500,
+      message: 'error occured'
+    }
+    return next()
+  }
 }
 
 export const getDoctorById = async (req: Request, res: Response) => {
