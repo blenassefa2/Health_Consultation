@@ -1,75 +1,56 @@
 import React from "react";
 
-import { Text, Image, View, Pressable } from "react-native";
+import {
+  Text,
+  Image,
+  View,
+  Pressable,
+  ScrollView,
+  FlatList,
+} from "react-native";
 import { stylesheet } from "../stylesheet/home.style";
-export default function Home({ navigation }) {
-  const pressHandler = () => {
-    const goToScreen = "Welcome";
-    navigation.navigate(goToScreen);
-  };
-  
+import HomeRectangleOne from "../components/home.rectangle1";
+import HomeRectangleTwo from "../components/home.rectangle2";
 
+export default function Home({ navigation }) {
+  let doctors = { status: 0, data: NaN };
+
+  const getDoctors = async () => {
+    try {
+      const result = await fetch(
+        "http://localhost:3000/api/v1/doctor/allDoctors"
+      );
+      doctors = await result.json();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const pressHandler = async () => {
+    try {
+      await getDoctors();
+    } catch (error) {
+      doctors = { name: "blen" };
+    }
+    console.log(doctors);
+    const goToScreen = "Welcome";
+    navigation.navigate(goToScreen, doctors);
+  };
   const pressHandler1 = () => {
     const goToScreen = "Detail";
     navigation.navigate(goToScreen);
   };
-  
+
   return (
     <>
-      <View style={stylesheet.styleRectangle1}></View>
+      <View scrollEnabled={true} style={stylesheet.styleRectangle1}>
+        <Text style={stylesheet.styleChooseFormat}> CHOOSE FORMAT </Text>
+        <View style={stylesheet.styleRectangle2}></View>
+        <Text style={stylesheet.styleSkip}> Skip </Text>
 
-      <Text style={stylesheet.styleChooseFormat}> CHOOSE FORMAT </Text>
-      <View style={stylesheet.styleRectangle2}> </View>
-      <Text style={stylesheet.styleSkip}> Skip </Text>
-      <View style={stylesheet.styleRectangle3}> </View>
-      <View style={stylesheet.styleRectangle5}> </View>
-      <Text style={stylesheet.styleOnlineConsultation}>
-        Online Consultation
-      </Text>
-      <Image
-        style={stylesheet.styleEllipse5}
-        source={{
-          url: "assets/icon.png",
-        }}
-      ></Image>
-      <View style={stylesheet.styleEllipse6}></View>
-      <Image
-        style={stylesheet.styleEllipse7}
-        source={require("../assets/stethescope.png")}
-      ></Image>
-      <Text style={stylesheet.styleStartingFrom50}> Starting from $SO </Text>
-      <Text style={stylesheet.styleStartingFrom50Copy1}>Starting from $50</Text>
-      <Pressable
-        style={stylesheet.styleRectangle4}
-        onPress={pressHandler}
-      ></Pressable>
-      <View style={stylesheet.styleRectangle6}> </View>
-
-      <Pressable style={stylesheet.styleFindDoctor} onPress={pressHandler}>
-        <Text>Find Doctor</Text>
-      </Pressable>
-
-      <View style={stylesheet.styleMaterialSymbolsNavigateNext}> </View>
-      
-      <Text style={stylesheet.styleVisitADoctor}>
-        Visit a Doctor
-      </Text>
-      <View style={stylesheet.styleMaterialSymbolsStethoscope}></View>
-      <Image
-        source={require("../assets/mobileIcon.png")}
-        style={stylesheet.styleMaterialSymbolsMobileFriendlyRounded}
-      ></Image>
-      <Pressable style={stylesheet.styleBookAppointment} onPress={pressHandler1}>
-      <Text> Book Appointment</Text> 
-      </Pressable>
-      <View style={stylesheet.styleMaterialSymbolsNavigateNextCopy1}> </View>
-      <Image
-        style={stylesheet.styleRectangle7}
-        source={{
-          url: "assets/icon.png",
-        }}
-      ></Image>
+        <HomeRectangleOne press={pressHandler}></HomeRectangleOne>
+        <HomeRectangleTwo></HomeRectangleTwo>
+      </View>
     </>
   );
-  
 }
