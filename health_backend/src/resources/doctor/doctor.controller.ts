@@ -3,8 +3,12 @@ import mongoose from 'mongoose'
 import { Doctor } from './doctor.model'
 import cloudinary from './../../config/cloudinary'
 import { nextTick } from 'process'
-
-export const updateUser = async (req: Request, res: Response) => {
+import { uploadImage, uploadlicense } from '../../middleware/upload'
+export const updateUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   if (!req.body) {
     const result = {
       statusCode: 404,
@@ -12,7 +16,33 @@ export const updateUser = async (req: Request, res: Response) => {
     }
     return result
   }
+
   const {
+    name,
+    description,
+    speciality,
+    consultedPatientsOnline,
+    consultedPatients,
+    rating,
+    customerRates
+    // availability,
+  } = req.body
+  const image = req.files[1]
+  const license = req.files[0]
+  const imageUploadResult = await uploadImage(image)
+  const licenseUploadResult = await uploadlicense(license)
+  const { statusCode, data: cloudinary_result } = imageUploadResult
+  if (statusCode == 400) {
+    res.locals.json = {
+      statusCode,
+      message: imageUploadResult.message
+    }
+  }
+  const { statusCode1, data: cloudinary_result1 } = licenseUploadResult
+
+  const photoURL = cloudinary_result?.secure_url
+  const licence = cloudinary_result1?.secure_url
+  const doctor = await Doctor.create({
     name,
     description,
     speciality,
@@ -21,40 +51,21 @@ export const updateUser = async (req: Request, res: Response) => {
     rating,
     photoURL,
     customerRates,
-    availability,
+    // availability,
     licence
-  } = req.body
-
-  const result = await cloudinary.uploader.upload(licence, {
-    folder: 'image',
-    use_filename: true
-  })
-  const url = result.secure_url
-  const result2 = await cloudinary.uploader.upload(photoURL, {
-    folder: 'image',
-    use_filename: true
-  })
-  const URL = result2.secure_url
-
-  const doctor = await Doctor.create({
-    name,
-    description,
-    speciality,
-    consultedPatientsOnline,
-    consultedPatients,
-    rating,
-    URL,
-    customerRates,
-    availability,
-    url
   })
   if (!doctor) {
     const result = {
       statusCode: 400,
       message: 'Cannot create material'
     }
-    return result
+    return next()
   }
+  res.locals.json = {
+    statusCode: 200,
+    data: doctor
+  }
+  return next()
 }
 
 export const getAllDoctors = async (
@@ -78,15 +89,31 @@ export const getAllDoctors = async (
   }
 }
 
-export const getDoctorById = async (req: Request, res: Response) => {
+export const getDoctorById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const _id = req.params.id
   const doctor = await Doctor.findById(_id)
-  return doctor
+  res.locals.json = {
+    statusCode: 200,
+    data: doctor
+  }
+  return next()
 }
-export const getDoctorByTag = async (req: Request, res: Response) => {
+export const getDoctorByTag = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const tag = req.params.tag
   const doctor = await Doctor.find({
     speciality: tag
   })
-  return doctor
+  res.locals.json = {
+    statusCode: 200,
+    data: doctor
+  }
+  return next()
 }
