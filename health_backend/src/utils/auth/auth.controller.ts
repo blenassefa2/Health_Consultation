@@ -2,56 +2,81 @@ import { Account } from "../../resources/account/account.model";
 import bcrypt from "bcryptjs";
 import { NextFunction, Request, Response } from "express";
 import JWT from "jsonwebtoken";
+import { Token } from "./token.model";
 
-export const login = (req: Request, res: Response, next: NextFunction) => {
-  const email = req.body.email;
-  const password = req.body.password;
+export const login = async (req: Request, res: Response, next: NextFunction) => {
 
-  Account.findOne({ email })
-    .then((user) => {
-      if (!user) {
+    try{
+        const email = req.body.email;
+        const password = req.body.password;
+        const user = await Account.findOne({ email })
+        
+        if (!user) {
         res.locals.json = {
-          statusCode: 404,
-          message: "blah blah",
+            statusCode: 404,
+            message: "User not found",
         };
         return next();
-      } else {
-        bcrypt.compare(password, <string>user.password, function (err, result) {
-          if (err || !result) {
+        }
+        const {err, result } = bcrypt.compare(password, <string>user.password)
+        if (err || !result) {
             res.locals.json = {
-              statusCode: 401,
-              message: "Invalid Cridentials",
+                statusCode: 401,
+                message: "Invalid Cridentials",
             };
             return next();
-          } else {
-            const userData = {
-              name: `${user.firstName} ${user.lastName}`,
-              phone: user.phone,
-              email: user.email,
-            };
+        } 
+        const userData = {
+            name: `${user.firstName} ${user.lastName}`,
+            phone: user.phone,
+            email: user.email,
+        };
 
-            const token = JWT.sign(
-              { _id: user._id, role: user.role },
-              process.env.JWT_SECRET
-            );
-            console.log(token);
-            res.locals.json = {
-              statusCode: 200,
-              data: {
-                token: token,
-                role: user.role,
-              },
-            };
-            return next();
-          }
-        });
-      }
-    })
-    .catch((error) => {
-      res.locals.json = {
-        statusCode: 500,
-        message: "error occured",
-      };
-      return next();
-    });
+        const savedToken = await new Token({token: JWT.sign(
+            { _id: user._id, role: user.role },
+            process.env.JWT_SECRET
+        )})
+        
+        res.locals.json = {
+            statusCode: 200,
+            data: {
+            token: savedToken.token,
+            role: user.role,
+            },
+        };
+        return next();
+        }
+        catch{() => {
+        res.locals.json = {
+            statusCode: 500,
+            message: "Error Occured!",
+        };
+        return next();
+        }};
 };
+
+export const logout = async (req: Request, res: Response, next: NextFunction) => {
+    try{
+        const deleted = await Token.findOneAndDelete({token: req.body.token})
+        if (deleted){
+            res.locals.json = {
+                statusCode: 200,
+                message: "User Logged Out!"
+            }
+        }
+        else{
+            res.locals.json = {
+                statusCode: 500,
+                message: "Error Occured!"
+            }
+        }
+        return next()
+    } 
+    catch{() => {
+        res.locals.json = {
+            statusCode: 500,
+            message: "Error occured!",
+        };
+        return next();
+    }};
+}

@@ -7,6 +7,7 @@ import cors from 'cors'
 import { connect } from './utils/db/setupDB'
 import doctorRouter from './resources/doctor/doctor.router'
 import timeRouter from './resources/time/time.router'
+import authRouter from './utils/auth/auth.router'
 
 export const app = express()
 
@@ -18,8 +19,9 @@ app.use(bodyParser.json({ limit: '50mb' }))
 app.use(urlencoded({ extended: true, limit: '50mb' }))
 app.use(morgan('dev'))
 
-app.use('/api/v1/doctor', doctorRouter)
-app.use('/api/v1/time', timeRouter)
+app.use('/api/v1/doctor/', doctorRouter)
+app.use('/api/v1/time/', timeRouter)
+app.use('/api/v1/auth/', authRouter)
 
 app.use((req, res) => {
   res.json({ data: 'Hello World!' })
