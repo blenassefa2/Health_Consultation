@@ -5,15 +5,13 @@ export interface IAccountInterface {
   lastName: string;
   email: string;
   phone: string;
-  userName: string;
   password: string;
   role: string;
   woreda: string;
-  maritaStatus: string;
-  town: string;
+  city: string;
   houeseNo: string;
   kebele: string;
-  photo: string;
+  profilePhoto: string;
 }
 
 export const AccountSchema: mongoose.Schema<IAccountInterface> =
@@ -26,10 +24,7 @@ export const AccountSchema: mongoose.Schema<IAccountInterface> =
       type: String,
       required: true,
     },
-    userName: {
-      type: String,
-      required: true,
-    },
+    
     email: {
       type: String,
       required: true,
@@ -44,18 +39,15 @@ export const AccountSchema: mongoose.Schema<IAccountInterface> =
     },
     role: {
       type: String,
-      enum: ["Employee", "Statistician", "Hrmanager"],
+      enum: ["HealthProfessional", "Other"],
       required: true,
     },
     woreda: {
       type: String,
       required: false,
     },
-    maritaStatus: {
-      type: String,
-      required: false,
-    },
-    town: {
+    
+    city: {
       type: String,
       required: false,
     },
@@ -67,7 +59,7 @@ export const AccountSchema: mongoose.Schema<IAccountInterface> =
       type: String,
       required: false,
     },
-    photo: {
+    profilePhoto: {
       type: String,
       required: true,
     },
