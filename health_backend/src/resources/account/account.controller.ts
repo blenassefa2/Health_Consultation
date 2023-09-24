@@ -17,23 +17,27 @@ export const register = async (
       folder: "photo",
       use_filename: true,
     });
-    const hashedpass = await bcrypt.hash("req.body.password", 10);
-
+    
+    const hashedpass = await bcrypt.hash(`${req.body.password}`, 10);
+    if (!req.body.authKey){
+        res.locals.json = {
+            statusCode: 401,
+            message: "User not verified!"
+        }
+    }
     let user = await new Account({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      userName: req.body.firstName + req.body.lastName,
       email: req.body.email,
       phone: req.body.phone,
       role: req.body.role,
-      photoUrl: req.body.photoUrl,
       password: hashedpass,
-      photo: cloudinaryImage.secure_url,
+      profilePhoto: cloudinaryImage.secure_url,
       woreda: req.body.woreda,
-      maritaStatus: req.body.maritaStatus,
-      town: req.body.town,
-      houeseNo: req.body.houeseNo,
+      city: req.body.city,
+      houeseNo: req.body.houeseNo ,
       kebele: req.body.kebele,
+      authKey: req.body.authKey
     });
     await user.save();
 
